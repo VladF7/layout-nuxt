@@ -65,11 +65,13 @@ export default {
   background-color: #fff;
   position: fixed;
   z-index: 10;
-  top: 144px;
+  top: $headerSize;
   right: 0;
   bottom: 0;
   left: 0;
-  height: calc(100vh - $headerSize);
+  height: calc(100% - $headerSize);
+  min-height: max-content;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

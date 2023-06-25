@@ -1,8 +1,5 @@
 export default {
-  // Target: https://go.nuxtjs.dev/config-target
   target: 'server',
-
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'layout-nuxt',
     htmlAttrs: {
@@ -17,13 +14,13 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
-  css: ['@/assets/styles/main.scss'],
+  css: ['@/assets/styles/main.scss', 'swiper/dist/css/swiper.css'],
 
-  plugins: [],
+  plugins: [{ src: '~/plugins/vue-awesome-swiper.js', mode: 'client' }],
 
   components: true,
 
-  modules: ['bootstrap-vue/nuxt'],
+  modules: [],
 
   build: {},
 

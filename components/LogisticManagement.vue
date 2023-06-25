@@ -136,11 +136,11 @@ export default {
     margin-top: 38px;
   }
   .container__scroll-element {
-    width: 17%;
+    width: 10%;
   }
   .container__main-section {
-    width: 58%;
-    padding-left: 0;
+    width: 65%;
+    padding-left: 55px;
   }
 
   .container__main-section-title {
