@@ -190,7 +190,7 @@ export default {
 //Large devices
 @media (min-width: 1024px) {
   .container__swiper-slide {
-    transform: translate(-57%, 0);
+    transform: translate(-64%, 0);
     width: 420px;
     height: 368px;
     padding: 67px 37px;

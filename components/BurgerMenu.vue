@@ -63,24 +63,19 @@ export default {
 }
 .burger-menu__overlay {
   background-color: #fff;
-  position: fixed;
+  position: absolute;
   z-index: 10;
-  top: $headerSize;
+  top: 100%;
   right: 0;
-  bottom: 0;
   left: 0;
-  height: calc(100% - $headerSize);
-  min-height: max-content;
-  overflow: auto;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 .burger-menu__overlay-menu-item {
   display: block;
-
   @include font-style($black, 21px, Catamaran, -0.53px);
-
   padding: 11px 39px 11px 40px;
   object-fit: contain;
   border: solid 1px #f3f3f3;

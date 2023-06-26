@@ -170,14 +170,14 @@ export default {
     margin-top: 107px;
   }
   .container__scroll-element {
-    width: 15%;
+    width: 10%;
   }
   .container__main-section {
-    width: 53%;
-    padding-left: 45px;
+    width: 56%;
+    padding-left: 95px;
   }
   .container__decorative-routes-thing-big {
-    width: 32%;
+    width: 34%;
   }
 
   .container__main-section-title {
