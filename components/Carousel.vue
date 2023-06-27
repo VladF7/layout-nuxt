@@ -16,19 +16,19 @@
           <div class="container__swiper-slide-description">{{ slde.description }}</div>
         </div>
       </div>
-    </div>
-    <div class="container__swiper-toolbar">
-      <div class="container__swiper-toolbar-buttons">
-        <button
-          :class="{ 'container__swiper-toolbar-buttons-button_disabled': isFirstSlide }"
-          class="container__swiper-toolbar-buttons-button container__swiper-toolbar-buttons-button_prev"
-        ></button>
-        <button
-          :class="{ 'container__swiper-toolbar-buttons-button_disabled': isLastSlide }"
-          class="container__swiper-toolbar-buttons-button container__swiper-toolbar-buttons-button_next"
-        ></button>
+      <div class="container__swiper-toolbar">
+        <div class="container__swiper-toolbar-buttons">
+          <button
+            :class="{ 'container__swiper-toolbar-buttons-button_disabled': isFirstSlide }"
+            class="container__swiper-toolbar-buttons-button container__swiper-toolbar-buttons-button_prev"
+          ></button>
+          <button
+            :class="{ 'container__swiper-toolbar-buttons-button_disabled': isLastSlide }"
+            class="container__swiper-toolbar-buttons-button container__swiper-toolbar-buttons-button_next"
+          ></button>
+        </div>
+        <div class="swiper-pagination"></div>
       </div>
-      <div class="swiper-pagination"></div>
     </div>
   </div>
 </template>
@@ -128,6 +128,7 @@ export default {
   position: relative;
 }
 .container__swiper-toolbar-buttons {
+  display: flex;
 }
 .container__swiper-toolbar-buttons-button {
   width: 70px;
@@ -136,6 +137,9 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url('../static/next-button.svg');
+  &:hover {
+    filter: brightness(94%);
+  }
 }
 .container__swiper-toolbar-buttons-button_prev {
   rotate: 180deg;
@@ -172,6 +176,9 @@ export default {
       line-height: 1;
     }
   }
+  .container__swiper-toolbar-buttons {
+    transform: translate(0, 0);
+  }
 }
 
 // Medium devices
@@ -184,6 +191,9 @@ export default {
   }
   .container__swiper-toolbar-buttons {
     width: 375px;
+  }
+  .container__swiper-toolbar-buttons {
+    transform: translate(-37%, 0);
   }
 }
 
@@ -202,6 +212,9 @@ export default {
       margin: 22px 0 0 0;
       @include font-style(#fff, 17px, OpenSans, -0.43px);
     }
+  }
+  .container__swiper-toolbar-buttons {
+    transform: translate(113%, 0);
   }
 }
 </style>

@@ -22,7 +22,20 @@ export default {
 
   modules: [],
 
-  build: {},
+  build: {
+    extend(config, { isDev, isClient }) {
+      config.module.rules.push({
+        test: /\.(ico)(\?.*)?$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            name: 'images/[name].[hash:8].[ext]'
+          }
+        }
+      })
+    }
+  },
 
   buildModules: ['@nuxtjs/style-resources'],
   styleResources: {

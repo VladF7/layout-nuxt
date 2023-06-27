@@ -7,9 +7,3 @@ export const mutations = {
     state.isOpen = !state.isOpen
   }
 }
-
-export const actions = {
-  toggleMenu({ commit }) {
-    commit('toggleMenu')
-  }
-}

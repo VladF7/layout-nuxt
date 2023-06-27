@@ -1,8 +1,11 @@
 <template>
   <div class="container">
-    <div class="container__benefit">
+    <section id="benefits" class="container__benefit">
       <div class="container__benefit-scroll-element">
-        <ScrollElement scrollElementText="Scroll to see our advantages" scrollToLink="#" />
+        <ScrollElement
+          scrollElementText="Scroll to see our advantages"
+          scrollToLink="#advantages"
+        />
       </div>
       <div class="container__benefit-main-section">
         <h2 class="container__benefit-main-section-title">
@@ -29,7 +32,7 @@
           </li>
         </ul>
       </div>
-    </div>
+    </section>
     <div class="container__discuss-section">
       <h3 class="container__discuss-section-title">
         <span class="container__discuss-section-title-row">YOUR BUSINESS CASE</span>
@@ -48,7 +51,7 @@
 <script>
 import Button from './Button.vue'
 export default {
-  name: 'Benefit',
+  name: 'Benefits',
   components: { Button },
   data() {
     return {

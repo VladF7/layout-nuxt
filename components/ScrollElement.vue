@@ -40,7 +40,7 @@ export default {
   flex-wrap: nowrap;
   rotate: -90deg;
   &:hover {
-    color: $red;
+    color: $pale-orange;
   }
 }
 .scroll-container__element-icon {

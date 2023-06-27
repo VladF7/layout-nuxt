@@ -6,9 +6,9 @@
 
     <nav class="container__menu">
       <ul class="container__menu-items">
-        <li><a class="container__menu-item" href="#">Benefits</a></li>
-        <li><a class="container__menu-item" href="#">Advantages</a></li>
-        <li><a class="container__menu-item" href="#">Achievements</a></li>
+        <li><a class="container__menu-item" href="#benefits">Benefits</a></li>
+        <li><a class="container__menu-item" href="#advantages">Advantages</a></li>
+        <li><a class="container__menu-item" href="#achiements">Achievements</a></li>
       </ul>
     </nav>
 
@@ -85,6 +85,9 @@ export default {
     align-items: center;
     height: 23px;
     @include font-style($black, 17px, OpenSans-Semibold, 0.13px);
+    &:hover {
+      color: $pale-orange;
+    }
   }
 }
 

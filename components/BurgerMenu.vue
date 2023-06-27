@@ -10,9 +10,30 @@
     <div v-show="isOpen" class="burger-menu__overlay">
       <nav class="burger-menu__overlay-menu">
         <ul>
-          <li><a class="burger-menu__overlay-menu-item" href="#">Benefits</a></li>
-          <li><a class="burger-menu__overlay-menu-item" href="#">Advantages</a></li>
-          <li><a class="burger-menu__overlay-menu-item" href="#">Achievements</a></li>
+          <li>
+            <a
+              class="burger-menu__overlay-menu-item"
+              @click="scrollToSection('#benefits')"
+              href="#benefits"
+              >Benefits</a
+            >
+          </li>
+          <li>
+            <a
+              class="burger-menu__overlay-menu-item"
+              @click="scrollToSection('#benefits')"
+              href="#advantages"
+              >Advantages</a
+            >
+          </li>
+          <li>
+            <a
+              class="burger-menu__overlay-menu-item"
+              @click="scrollToSection('#benefits')"
+              href="#achivements"
+              >Achievements</a
+            >
+          </li>
         </ul>
       </nav>
 
@@ -42,7 +63,17 @@ export default {
   },
   methods: {
     toggleMenu() {
-      this.$store.dispatch('toggleMenu')
+      this.$store.commit('toggleMenu')
+    },
+    scrollToSection(sectionId) {
+      this.$store.commit('toggleMenu')
+
+      this.$nextTick(() => {
+        const targetElement = document.querySelector(sectionId)
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' })
+        }
+      })
     }
   }
 }

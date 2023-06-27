@@ -3,7 +3,8 @@
     <main-layout>
       <LogisticManagement />
       <HaveYouExperienced />
-      <Benefit />
+      <Benefits />
+      <Advantages />
     </main-layout>
   </div>
 </template>
@@ -12,9 +13,12 @@
 import MainLayout from '../layout/MainLayout.vue'
 import LogisticManagement from '../components/LogisticManagement.vue'
 import HaveYouExperienced from '../components/HaveYouExperienced.vue'
-import Benefit from '../components/Benefit.vue'
+import Benefits from '../components/Benefits.vue'
+import Advantages from '../components/Advantages.vue'
 
-export default { components: { MainLayout, LogisticManagement, HaveYouExperienced, Benefit } }
+export default {
+  components: { MainLayout, LogisticManagement, HaveYouExperienced, Benefits, Advantages }
+}
 </script>
 <style lang="scss" scoped>
 .wrapper {

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="container__decorative-routes-thing-small"></div>
     <div class="container__scroll-element">
-      <ScrollElement scrollElementText="Scroll for more information" scrollToLink="#" />
+      <ScrollElement scrollElementText="Scroll for more information" scrollToLink="#benefits" />
     </div>
     <div class="container__main-section">
       <h1 class="container__main-section-title">Logistic management software development</h1>
