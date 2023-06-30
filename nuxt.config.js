@@ -1,8 +1,5 @@
 export default {
-  // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
-
-  // Global page headers: https://go.nuxtjs.dev/config-head
+  target: 'server',
   head: {
     title: 'layout-nuxt',
     htmlAttrs: {
@@ -14,33 +11,49 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: ['@/assets/styles/main.scss', 'swiper/dist/css/swiper.css'],
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  plugins: [{ src: '~/plugins/vue-awesome-swiper.js', mode: 'client' }],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-  ],
+  modules: [],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    // https://go.nuxtjs.dev/bootstrap
-    'bootstrap-vue/nuxt',
-  ],
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extend(config, { isDev, isClient }) {
+      config.module.rules.push({
+        test: /\.(ico)(\?.*)?$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            name: 'images/[name].[hash:8].[ext]'
+          }
+        }
+      })
+    }
+  },
+
+  buildModules: ['@nuxtjs/style-resources'],
+  styleResources: {
+    scss: [
+      '@/assets/variables/colors.scss',
+      '@/assets/variables/elements.scss',
+      '@/assets/styles/fonts.scss',
+      '@/assets/styles/mixins.scss'
+    ]
+  },
+  loaders: {
+    scss: {
+      additionalData: [
+        '@/assets/variables/colors.scss',
+        '@/assets/variables/elements.scss',
+        '@/assets/styles/fonts.scss',
+        '@/assets/styles/mixins.scss'
+      ]
+    }
   }
 }
