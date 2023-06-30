@@ -1,6 +1,9 @@
 <template>
-  <div class="container">
-    <h2 class="container__title">Have you experienced any of these issues?</h2>
+  <section id="experience" class="container">
+    <div class="container__title-wrapper">
+      <h2 class="container__title">Have you experienced any of these issues?</h2>
+    </div>
+
     <div class="container__carousel">
       <Carousel />
     </div>
@@ -10,7 +13,7 @@
       </div>
       <h3 class="container__expenses-reduction-percent">49,2 %</h3>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -26,6 +29,10 @@ export default {
   margin-top: 168px;
   max-width: 100%;
   padding: 0;
+}
+.container__title-wrapper {
+  display: flex;
+  justify-content: right;
 }
 .container__title {
   margin: 0;
@@ -83,7 +90,9 @@ export default {
     margin-top: 144px;
   }
   .container__title {
-    padding: 0 91px 0 92px;
+    max-width: 585px;
+    margin-right: 91px;
+    margin-left: 26px;
   }
   .container__carousel {
     margin-top: 165px;
@@ -99,12 +108,15 @@ export default {
     margin-top: 168px;
   }
   .container__title {
-    padding: 0 253px 0 284px;
+    max-width: 903px;
+    margin-right: 253px;
+    margin-left: 127px;
     @include font-style($black, 35px, Catamaran, -0.88px);
-    line-height: normal;
+    line-height: 1;
   }
   .container__carousel {
     margin-top: 168px;
+    padding-left: 95px;
   }
   .container__expenses-reduction {
     margin-top: 178px;

@@ -1,5 +1,5 @@
 <template>
-  <header class="container">
+  <header id="header" class="container">
     <div class="container__logo">
       <div class="container__logo-image"></div>
     </div>
@@ -8,7 +8,7 @@
       <ul class="container__menu-items">
         <li><a class="container__menu-item" href="#benefits">Benefits</a></li>
         <li><a class="container__menu-item" href="#advantages">Advantages</a></li>
-        <li><a class="container__menu-item" href="#achiements">Achievements</a></li>
+        <li><a class="container__menu-item" href="#achievements">Achievements</a></li>
       </ul>
     </nav>
 

@@ -1,26 +1,25 @@
 <template>
-  <div class="container">
+  <section id="logistic" class="container">
     <div class="container__decorative-routes-thing-small"></div>
-    <div class="container__scroll-element">
-      <ScrollElement scrollElementText="Scroll for more information" scrollToLink="#benefits" />
-    </div>
     <div class="container__main-section">
-      <h1 class="container__main-section-title">Logistic management software development</h1>
-      <div class="container__main-section-description">
-        We solve transportation and stock management problems for Factories, Manufacturers,
-        Carriers, Resellers, E-commerce and even more. Any issue can be solved with smart
-        digitalization.
-      </div>
-      <div class="container__main-section-button">
-        <div class="container__main-section-button-component">
-          <Button buttonText="Request a free consultation" />
+      <div class="container__main-section-wrapper">
+        <h1 class="container__main-section-title">Logistic management software development</h1>
+        <div class="container__main-section-description">
+          We solve transportation and stock management problems for Factories, Manufacturers,
+          Carriers, Resellers, E-commerce and even more. Any issue can be solved with smart
+          digitalization.
+        </div>
+        <div class="container__main-section-button">
+          <div class="container__main-section-button-component">
+            <Button @handleClick="openMoodal" buttonText="Request a free consultation" />
+          </div>
         </div>
       </div>
     </div>
     <div class="container__decorative-routes-thing-big">
       <div class="container__decorative-routes-thing-big-image"></div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -28,7 +27,12 @@ import ScrollElement from './ScrollElement.vue'
 import Button from './Button.vue'
 export default {
   name: 'LogisticManagement',
-  components: { ScrollElement, Button }
+  components: { ScrollElement, Button },
+  methods: {
+    openMoodal() {
+      this.$store.commit('openModal')
+    }
+  }
 }
 </script>
 
@@ -38,7 +42,6 @@ export default {
   padding: 0;
   display: flex;
   justify-content: center;
-  max-width: 100%;
 }
 .container__decorative-routes-thing-small {
   width: 127px;
@@ -50,10 +53,6 @@ export default {
   background-image: url('../static/decorative-routes-thing-small.svg');
   background-repeat: no-repeat;
   background-size: cover;
-}
-.container__scroll-element {
-  align-items: center;
-  justify-content: center;
 }
 .container__main-section {
   justify-content: flex-start;
@@ -68,10 +67,12 @@ export default {
 .container__main-section-description {
   opacity: 0.75;
   @include font-style($charcoal, 17px, OpenSans, -0.43px);
+  position: relative;
 }
 .container__main-section-button {
-  display: flex;
-  justify-content: flex-end;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .container__main-section-button-component {
   width: 345px;
@@ -91,9 +92,6 @@ export default {
     margin-top: 92px;
     flex-direction: column;
   }
-  .container__scroll-element {
-    display: none;
-  }
   .container__main-section {
     padding: 0 25px;
   }
@@ -103,18 +101,13 @@ export default {
     line-height: 1;
   }
   .container__main-section-description {
-    position: relative;
     margin: 50px 0 0 0;
   }
   .container__main-section-button {
     padding-top: 50px;
-    position: absolute;
-    justify-content: center;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
     padding-left: 15px;
     padding-right: 15px;
+    width: 100%;
   }
   .container__main-section-button-component {
     width: 100%;
@@ -135,14 +128,15 @@ export default {
   .container {
     margin-top: 38px;
   }
-  .container__scroll-element {
-    width: 10%;
-  }
   .container__main-section {
-    width: 65%;
-    padding-left: 55px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 70%;
   }
-
+  .container__main-section-wrapper {
+    max-width: 452px;
+  }
   .container__main-section-title {
     margin: 146px 0 0 0;
     @include font-style($black, 35px, Catamaran, -0.88px);
@@ -152,10 +146,10 @@ export default {
     margin: 68px 0 0 0;
   }
   .container__main-section-button {
-    padding: 87px 25px 0 0;
+    padding-top: 87px;
   }
   .container__decorative-routes-thing-big {
-    width: 25%;
+    width: 30%;
   }
 
   .container__decorative-routes-thing-big-image {
@@ -169,15 +163,12 @@ export default {
   .container {
     margin-top: 107px;
   }
-  .container__scroll-element {
-    width: 10%;
-  }
   .container__main-section {
-    width: 56%;
+    width: 62%;
     padding-left: 95px;
   }
   .container__decorative-routes-thing-big {
-    width: 34%;
+    width: 38%;
   }
 
   .container__main-section-title {
@@ -191,7 +182,7 @@ export default {
     max-width: 927px;
   }
   .container__main-section-button {
-    padding: 62px 72px 0 0;
+    padding-top: 62px;
   }
   .container__decorative-routes-thing-big-image {
     width: 415px;

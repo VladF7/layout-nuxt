@@ -1,12 +1,6 @@
 <template>
-  <div class="container">
-    <section id="benefits" class="container__benefit">
-      <div class="container__benefit-scroll-element">
-        <ScrollElement
-          scrollElementText="Scroll to see our advantages"
-          scrollToLink="#advantages"
-        />
-      </div>
+  <section id="benefits" class="container">
+    <div class="container__benefit">
       <div class="container__benefit-main-section">
         <h2 class="container__benefit-main-section-title">
           <span class="container__benefit-main-section-title-row">HOW CAN YOU BENEFIT FROM </span>
@@ -32,7 +26,7 @@
           </li>
         </ul>
       </div>
-    </section>
+    </div>
     <div class="container__discuss-section">
       <h3 class="container__discuss-section-title">
         <span class="container__discuss-section-title-row">YOUR BUSINESS CASE</span>
@@ -45,7 +39,7 @@
         <Button buttonText="Fill in the contact form" />
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -80,15 +74,13 @@ export default {
 
 <style scoped lang="scss">
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 0;
 }
 .container__benefit {
   display: flex;
-}
-.container__benefit-scroll-element {
-  display: none;
 }
 .container__benefit-main-section {
   z-index: 10;
@@ -150,7 +142,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
-  z-index: 0;
+  z-index: -10;
 }
 
 .container__discuss-section {
@@ -160,7 +152,7 @@ export default {
   z-index: 10;
   margin-top: 157px;
   position: relative;
-  z-index: 10;
+  transform: translate(-5%);
 }
 .container__discuss-section-title {
   @include font-style($black, 25px, Catamaran, -0.63px);
@@ -219,6 +211,7 @@ export default {
   }
   .container__discuss-section {
     margin-top: 140px;
+    transform: translate(0%);
   }
   .container__discuss-section-title {
     @include font-style($black, 21px, Catamaran, -0.53px);
@@ -237,12 +230,12 @@ export default {
     margin-top: 165px;
   }
   .container__benefit-main-section-title {
-    padding: 0 92px;
+    padding: 0 26px;
   }
 
   .container__benefit-main-section-items {
     margin-top: 121px;
-    margin-left: 58px;
+    margin-left: 0;
   }
   .container__benefit-main-section-item {
     display: flex;
@@ -269,12 +262,8 @@ export default {
   .container {
     margin-top: 271px;
   }
-  .container__benefit-scroll-element {
-    width: 10%;
-    display: block;
-  }
   .container__benefit-main-section {
-    width: 90%;
+    width: 100%;
   }
   .container__benefit-main-section-title {
     width: 710px;
@@ -307,12 +296,8 @@ export default {
   .container {
     margin-top: 271px;
   }
-  .container__benefit-scroll-element {
-    width: 10%;
-    display: block;
-  }
   .container__benefit-main-section {
-    width: 90%;
+    width: 100%;
   }
   .container__benefit-main-section-title {
     width: 710px;

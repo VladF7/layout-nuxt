@@ -1,9 +1,16 @@
 export const state = () => ({
-  isOpen: false
+  isOpenBurgerMenu: false,
+  isOpenModalWindow: false
 })
 
 export const mutations = {
   toggleMenu(state) {
-    state.isOpen = !state.isOpen
+    state.isOpenBurgerMenu = !state.isOpenBurgerMenu
+  },
+  closeModal(state) {
+    state.isOpenModalWindow = false
+  },
+  openModal(state) {
+    state.isOpenModalWindow = true
   }
 }

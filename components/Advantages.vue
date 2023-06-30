@@ -1,37 +1,39 @@
 <template>
   <section id="advantages" class="container">
     <div class="container__advantages">
-      <h2 class="container__advantages-title">OUR ADVANTAGES</h2>
-      <ul class="container__advantages-items">
-        <li class="container__advantages-item" v-for="(item, index) in items" :key="index">
-          <div class="container__advantages-item-wrapper">
-            <div class="container__advantages-item-dot"></div>
-            <div class="container__advantages-item-text">
-              <div class="container__advantages-item-text-show-icon">
-                <img
-                  class="container__advantages-item-text-show-icon-image"
+      <div class="container__advantages-wrapper">
+        <h2 class="container__advantages-title">OUR ADVANTAGES</h2>
+        <ul class="container__advantages-items">
+          <li class="container__advantages-item" v-for="(item, index) in items" :key="index">
+            <div class="container__advantages-item-wrapper">
+              <div class="container__advantages-item-dot"></div>
+              <div class="container__advantages-item-text">
+                <div class="container__advantages-item-text-show-icon" @click="toggleItem(index)">
+                  <img
+                    class="container__advantages-item-text-show-icon-image"
+                    :class="{
+                      'container__advantages-item-text-show-icon-image_closed':
+                        activeIndexes.includes(index)
+                    }"
+                    src="./../static/pin-left.svg"
+                  />
+                </div>
+                <h4 class="container__advantages-item-title" @click="toggleItem(index)">
+                  {{ item.title }}
+                </h4>
+                <div
+                  class="container__advantages-item-description"
                   :class="{
-                    'container__advantages-item-text-show-icon-image_closed':
-                      activeIndexes.includes(index)
+                    'container__advantages-item-description-show': activeIndexes.includes(index)
                   }"
-                  src="./../static/pin-left.svg"
-                />
-              </div>
-              <h4 class="container__advantages-item-title" @click="toggleItem(index)">
-                {{ item.title }}
-              </h4>
-              <div
-                class="container__advantages-item-description"
-                :class="{
-                  'container__advantages-item-description-show': activeIndexes.includes(index)
-                }"
-              >
-                {{ item.description }}
+                >
+                  {{ item.description }}
+                </div>
               </div>
             </div>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="container__rewievs">
       <ul class="container__rewievs-items">
@@ -128,7 +130,6 @@ export default {
 .container__advantages {
   display: flex;
   flex-direction: column;
-  transform: translateX(0%);
 }
 .container__rewievs {
   box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);
@@ -222,30 +223,37 @@ export default {
     display: none;
   }
   .container__advantages-item-text-show-icon-image {
+    cursor: pointer;
     display: block;
     position: absolute;
     right: 25px;
     top: 5px;
     width: 24px;
     height: 24px;
+    rotate: 0deg;
+    transition: rotate 0.3s ease-out;
   }
   .container__advantages-item-text-show-icon-image_closed {
     position: absolute;
     rotate: 180deg;
+    transition: rotate 0.3s ease-out;
   }
   .container__advantages-item-title {
     cursor: pointer;
+    width: 100%;
   }
   .container__advantages-item-description {
     margin-top: 0px;
     overflow: hidden;
     max-height: 0;
+    width: 100%;
     transition: margin-bottom 0.3s ease-out, margin-top 0.3s ease-out, max-height ease-out;
   }
   .container__advantages-item-description-show {
     margin-top: 11px;
     margin-bottom: 16px;
     max-height: 100%;
+    width: 100%;
     transition: margin-bottom 0.3s ease-out, margin-top 0.3s ease-out, max-height ease-out;
   }
   .container__rewievs {
@@ -268,10 +276,10 @@ export default {
   .container {
     margin-top: 173px;
     flex-direction: column;
-    padding: 0 68px;
+    padding-right: 66px;
   }
   .container__advantages {
-    margin-left: 11px;
+    padding-left: 11px;
   }
   .container__advantages-items {
     margin-top: 49px;
@@ -288,8 +296,9 @@ export default {
     margin-top: 168px;
   }
   .container__advantages {
-    width: 60%;
-    transform: translateX(29%);
+    width: 50%;
+    align-items: flex-end;
+    margin-right: 109px;
   }
   .container__advantages-title {
     @include font-style($black, 35px, Catamaran, -0.88px);
@@ -300,7 +309,7 @@ export default {
   }
 
   .container__rewievs {
-    width: 40%;
+    width: 50%;
     padding: 96px 40px 133px 40px;
   }
   .container__rewievs-item {

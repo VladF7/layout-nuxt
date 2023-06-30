@@ -1,33 +1,35 @@
 <template>
-  <div class="container">
+  <div class="swiper-container">
     <div
       ref="swiper"
-      class="container__swiper swiper"
+      class="swiper-container__swiper swiper"
       v-swiper:myDirectiveSwiper="swiperOptions"
       @slideChange="handleSlideChange"
     >
-      <div class="container__swiper-wrapper swiper-wrapper">
+      <div class="swiper-container__swiper-wrapper swiper-wrapper">
         <div
-          class="container__swiper-slide swiper-slide"
+          class="swiper-container__swiper-slide swiper-slide"
           v-for="(slde, index) in slides"
           :key="index"
         >
-          <h4 class="container__swiper-slide-title">{{ slde.title }}</h4>
-          <div class="container__swiper-slide-description">{{ slde.description }}</div>
+          <h4 class="swiper-container__swiper-slide-title">{{ slde.title }}</h4>
+          <div class="swiper-container__swiper-slide-description">{{ slde.description }}</div>
         </div>
       </div>
-      <div class="container__swiper-toolbar">
-        <div class="container__swiper-toolbar-buttons">
+      <div class="swiper-container__swiper-toolbar">
+        <div class="swiper-container__swiper-toolbar-buttons">
           <button
-            :class="{ 'container__swiper-toolbar-buttons-button_disabled': isFirstSlide }"
-            class="container__swiper-toolbar-buttons-button container__swiper-toolbar-buttons-button_prev"
+            :class="{ 'swiper-container__swiper-toolbar-buttons-button_disabled': isFirstSlide }"
+            class="swiper-container__swiper-toolbar-buttons-button swiper-container__swiper-toolbar-buttons-button_prev"
           ></button>
           <button
-            :class="{ 'container__swiper-toolbar-buttons-button_disabled': isLastSlide }"
-            class="container__swiper-toolbar-buttons-button container__swiper-toolbar-buttons-button_next"
+            :class="{ 'swiper-container__swiper-toolbar-buttons-button_disabled': isLastSlide }"
+            class="swiper-container__swiper-toolbar-buttons-button swiper-container__swiper-toolbar-buttons-button_next"
           ></button>
         </div>
-        <div class="swiper-pagination"></div>
+        <div class="swiper-container__swiper-toolbar-pagination-wrapper">
+          <div class="swiper-container__swiper-toolbar-pagination"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -56,13 +58,15 @@ export default {
       ],
       swiperOptions: {
         loop: false,
-        centeredSlides: true,
+        centeredSlides: false,
+        loop: true,
+        loopedSlides: 3,
         slidesPerView: 'auto',
         spaceBetween: 15,
         pagination: {
-          el: '.swiper-pagination',
-          // bulletClass: 'swiper-pagination-bullet',
-          // bulletActiveClass: 'swiper-pagination-bullet-active',
+          el: '.swiper-container__swiper-toolbar-pagination',
+          bulletClass: 'swiper-container__swiper-toolbar-pagination-bullet',
+          bulletActiveClass: 'swiper-container__swiper-toolbar-pagination-bullet-active',
           clickable: true
         },
         breakpoints: {
@@ -76,61 +80,90 @@ export default {
           },
           639: {
             slidesPerView: 'auto',
-            spaceBetween: 15
+            spaceBetween: 0
           }
         },
         navigation: {
-          nextEl: '.container__swiper-toolbar-buttons-button_next',
-          prevEl: '.container__swiper-toolbar-buttons-button_prev'
+          nextEl: '.swiper-container__swiper-toolbar-buttons-button_next',
+          prevEl: '.swiper-container__swiper-toolbar-buttons-button_prev'
         }
       }
     }
   },
   methods: {
     handleSlideChange() {
-      this.isFirstSlide = this.$refs.swiper.swiper.isBeginning
-      this.isLastSlide = this.$refs.swiper.swiper.isEnd
+      const prevButton = document.querySelector(
+        '.swiper-container__swiper-toolbar-buttons-button_prev'
+      )
+      const nextButton = document.querySelector(
+        '.swiper-container__swiper-toolbar-buttons-button_next'
+      )
+      if (this.$refs.swiper.swiper.activeIndex > 5) {
+        this.$refs.swiper.swiper.el.styles.disabled = true
+      }
+      console.log(this.$refs.swiper.swiper)
+      if (this.$refs.swiper.swiper.realIndex === 0) {
+        prevButton.disabled = true
+        this.isFirstSlide = true
+      } else {
+        prevButton.disabled = false
+        this.isFirstSlide = false
+      }
+      if (this.$refs.swiper.swiper.realIndex === this.slides.length - 1) {
+        nextButton.disabled = true
+        this.isLastSlide = true
+      } else {
+        nextButton.disabled = false
+        this.isLastSlide = false
+      }
     }
-  },
-  mounted() {}
+  }
 }
 </script>
 
-<style lang="scss" scoped>
-.container {
+<style lang="scss">
+.swiper-container-container {
   margin: 0;
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-
-  .container__swiper {
-    width: 100%;
+}
+.swiper-container__swiper {
+  width: 100%;
+}
+.swiper-container__swiper-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  box-sizing: content-box;
+}
+.swiper-container__swiper-slide {
+  box-shadow: 0 10px 30px 0 rgba(8, 61, 119, 0.25);
+  background-color: $twilight-blue;
+  .swiper-container__swiper-slide-title {
+    @include font-style(#fff, 21px, OpenSans, -0.53px);
+    color: #fff;
+    font-weight: bold;
+    line-height: 1.19;
   }
-  .container__swiper-slide {
-    box-shadow: 0 10px 30px 0 rgba(8, 61, 119, 0.25);
-    background-color: $twilight-blue;
-    .container__swiper-slide-title {
-      @include font-style(#fff, 21px, OpenSans, -0.53px);
-      color: #fff;
-      font-weight: bold;
-      line-height: 1.19;
-    }
-    .container__swiper-slide-description {
-      margin: 24px 0 0 0;
-      @include font-style(#fff, 15px, OpenSans, -0.38px);
-      color: #fff;
-    }
+  .swiper-container__swiper-slide-description {
+    margin: 24px 0 0 0;
+    @include font-style(#fff, 15px, OpenSans, -0.38px);
+    color: #fff;
   }
 }
-.container__swiper-toolbar {
+
+.swiper-container__swiper-toolbar {
   display: flex;
   position: relative;
 }
-.container__swiper-toolbar-buttons {
+.swiper-container__swiper-toolbar-buttons {
   display: flex;
 }
-.container__swiper-toolbar-buttons-button {
+.swiper-container__swiper-toolbar-buttons-button {
   width: 70px;
   height: 70px;
   object-fit: contain;
@@ -141,80 +174,77 @@ export default {
     filter: brightness(94%);
   }
 }
-.container__swiper-toolbar-buttons-button_prev {
+.swiper-container__swiper-toolbar-buttons-button_prev {
   rotate: 180deg;
 }
-.container__swiper-toolbar-buttons-button_next {
-}
-.container__swiper-toolbar-buttons-button_disabled {
+.swiper-container__swiper-toolbar-buttons-button_disabled {
   opacity: 0.25;
 }
-.swiper-pagination-bullet {
+.swiper-container__swiper-toolbar-pagination-wrapper {
+  position: relative;
+  width: 100%;
+}
+.swiper-container__swiper-toolbar-pagination {
+  transform: translate(-50%, -50%);
+  left: 30%;
+  top: 50%;
+  position: absolute;
+  display: flex;
+}
+.swiper-container__swiper-toolbar-pagination-bullet {
   width: 14px;
   height: 14px;
+  margin: 8px;
   opacity: 0.2;
   border-radius: 100%;
   background-color: $charcoal;
 }
-.swiper-pagination-bullet-active {
+.swiper-container__swiper-toolbar-pagination-bullet-active {
   opacity: 1;
-}
-.swiper-pagination {
-  transform: translate(50%, 50%);
-  left: 50%;
-  top: 50%;
 }
 
 // Small devices
 @media (max-width: 639px) {
-  .container__swiper-slide {
-    transform: translate(0, 0);
+  .swiper-container__swiper-slide {
     width: 100%;
     height: 375px;
     padding: 92px 30px;
-    .container__swiper-slide-title {
+    .swiper-container__swiper-slide-title {
       line-height: 1;
     }
   }
-  .container__swiper-toolbar-buttons {
-    transform: translate(0, 0);
+  .swiper-container__swiper-toolbar {
+    flex-direction: row-reverse;
+  }
+  .swiper-container__swiper-toolbar-pagination {
+    left: 50%;
   }
 }
 
 // Medium devices
 @media (min-width: 640px) and (max-width: 1023px) {
-  .container__swiper-slide {
-    transform: translate(-37%, 0);
+  .swiper-container__swiper-slide {
     width: 375px;
     height: 368px;
     padding: 87px 15px;
-  }
-  .container__swiper-toolbar-buttons {
-    width: 375px;
-  }
-  .container__swiper-toolbar-buttons {
-    transform: translate(-37%, 0);
   }
 }
 
 //Large devices
 @media (min-width: 1024px) {
-  .container__swiper-slide {
-    transform: translate(-64%, 0);
+  .swiper-container__swiper-slide {
     width: 420px;
     height: 368px;
     padding: 67px 37px;
-    .container__swiper-slide-title {
+    .swiper-container__swiper-slide-title {
       @include font-style(#fff, 21px, OpenSans, -0.53px);
       color: #fff;
     }
-    .container__swiper-slide-description {
+    .swiper-container__swiper-slide-description {
       margin: 22px 0 0 0;
       @include font-style(#fff, 17px, OpenSans, -0.43px);
+      color: #fff;
     }
-  }
-  .container__swiper-toolbar-buttons {
-    transform: translate(113%, 0);
   }
 }
 </style>

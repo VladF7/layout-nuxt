@@ -2,12 +2,12 @@
   <div class="burger-menu">
     <button
       class="burger-menu__button"
-      :class="{ 'burger-menu__button_opened': isOpen }"
+      :class="{ 'burger-menu__button_opened': isOpenBurgerMenu }"
       type="button"
       @click="toggleMenu"
     ></button>
 
-    <div v-show="isOpen" class="burger-menu__overlay">
+    <div v-show="isOpenBurgerMenu" class="burger-menu__overlay">
       <nav class="burger-menu__overlay-menu">
         <ul>
           <li>
@@ -21,7 +21,7 @@
           <li>
             <a
               class="burger-menu__overlay-menu-item"
-              @click="scrollToSection('#benefits')"
+              @click="scrollToSection('#advantages')"
               href="#advantages"
               >Advantages</a
             >
@@ -29,8 +29,8 @@
           <li>
             <a
               class="burger-menu__overlay-menu-item"
-              @click="scrollToSection('#benefits')"
-              href="#achivements"
+              @click="scrollToSection('#achievements')"
+              href="#achievements"
               >Achievements</a
             >
           </li>
@@ -43,7 +43,7 @@
       </div>
 
       <div class="burger-menu__overlay-button">
-        <Button buttonText="Request a free consultation" @handleClick="toggleMenu" />
+        <Button buttonText="Request a free consultation" @handleClick="openMoodal" />
       </div>
     </div>
   </div>
@@ -57,11 +57,14 @@ export default {
   name: 'BurgerMenu',
   components: { Button, LanguageSwitcher },
   computed: {
-    isOpen() {
-      return this.$store.state.isOpen
+    isOpenBurgerMenu() {
+      return this.$store.state.isOpenBurgerMenu
     }
   },
   methods: {
+    openMoodal() {
+      this.$store.commit('openModal')
+    },
     toggleMenu() {
       this.$store.commit('toggleMenu')
     },
