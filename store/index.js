@@ -9,8 +9,10 @@ export const mutations = {
   },
   closeModal(state) {
     state.isOpenModalWindow = false
+    document.querySelector('body').style.overflow = 'auto'
   },
   openModal(state) {
     state.isOpenModalWindow = true
+    document.querySelector('body').style.overflow = 'hidden'
   }
 }

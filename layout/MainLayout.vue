@@ -1,12 +1,10 @@
 <template>
   <div>
     <Modal />
-    <div :class="{ 'disable-scroll': isOpenModalWindow }">
-      <Header />
-      <div :class="{ 'hide-content': isOpenBurgerMenu }">
-        <slot></slot>
-        <Footer />
-      </div>
+    <Header />
+    <div :class="{ 'hide-content': isOpenBurgerMenu }">
+      <slot></slot>
+      <Footer />
     </div>
   </div>
 </template>
@@ -33,11 +31,6 @@ export default {
 .hide-content {
   display: block;
 }
-.disable-scroll {
-  height: 100vh;
-  overflow-y: hidden;
-}
-
 // Small devices
 @media (max-width: 639px) {
   .hide-content {

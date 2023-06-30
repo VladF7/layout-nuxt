@@ -98,10 +98,6 @@ export default {
       const nextButton = document.querySelector(
         '.swiper-container__swiper-toolbar-buttons-button_next'
       )
-      if (this.$refs.swiper.swiper.activeIndex > 5) {
-        this.$refs.swiper.swiper.el.styles.disabled = true
-      }
-      console.log(this.$refs.swiper.swiper)
       if (this.$refs.swiper.swiper.realIndex === 0) {
         prevButton.disabled = true
         this.isFirstSlide = true
